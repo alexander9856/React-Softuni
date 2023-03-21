@@ -13,7 +13,7 @@ export const UserList = ({
     formValues,
     formChangeHandler,
     formErrors,
-    validateForm
+    validateForm,
 }) => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [selectedEditUser, setSelectedEditUser] = useState(null)
@@ -62,7 +62,17 @@ export const UserList = ({
     return (
         <>
             {selectedUser && <UserInfo {...selectedUser} onClose={onClose} />}
-            {selectedEditUser && <UserEdit {...selectedEditUser} onClose={onClose} onEdit={onEditedClick} formValues={formValues} formChangeHandler={formChangeHandler} />}
+            {selectedEditUser
+            &&
+            <UserEdit
+            {...selectedEditUser}
+            onClose={onClose}
+            onEdit={onEditedClick}
+            formValues={formValues}
+            formChangeHandler={formChangeHandler}
+            formErrors={formErrors}
+            validateForm={validateForm}
+            />}
             {selectedDeleteUser && <UserDelete userId={selectedDeleteUser} onClose={onClose} onDelete={onDeletedClick} />}
             {selectedAdd
                 &&

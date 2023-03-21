@@ -1,9 +1,21 @@
+import { useState } from "react"
+
 export const UserEdit = (
     props
-    
-
 ) => {
     const user = props.user
+    const [editUser, setEditUser] = useState({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        imageUrl: user.imageUrl,
+        country: user.address.country,
+        city: user.address.city,
+        street: user.address.street,
+        streetNumber: user.address.streetNumber
+    });
+
     return (
         <div className="overlay">
             <div className="backdrop" onClick={() => props.onClose()}></div>
@@ -27,22 +39,40 @@ export const UserEdit = (
                                 <label htmlFor="firstName"></label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" value={props.formValues.firstName} onChange={props.onChangeHandler} />
+                                    <input
+                                        id="firstName"
+                                        name="firstName"
+                                        type="text"
+                                        value={editUser.firstName}
+                                        onChange={(e) => setEditUser(state => ({ ...state, [e.target.name]: e.target.value }))}
+                                        onBlur={props.validateForm}
+                                    />
 
                                 </div>
-                                <p className="form-error">
-                                    First name should be at least 3 characters long!
-                                </p>
+                                {props.formErrors.firstName &&
+                                    <p className="form-error">
+                                        {props.formErrors.firstName}
+                                    </p>
+                                }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="lastName"></label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="lastName" name="lastName" type="text" value={props.formValues.lastName} onChange={props.onChangeHandler}/>
+                                    <input
+                                        id="lastName"
+                                        name="lastName"
+                                        type="text"
+                                        value={editUser.lastName}
+                                        onChange={(e) => setEditUser(state => ({ ...state, [e.target.name]: e.target.value }))}
+                                        onBlur={props.validateForm}
+                                    />
                                 </div>
-                                <p className="form-error">
-                                    Last name should be at least 3 characters long!
-                                </p>
+                                {props.formErrors.lastName &&
+                                    <p className="form-error">
+                                        {props.formErrors.lastName}
+                                    </p>
+                                }
                             </div>
                         </div>
 
@@ -51,17 +81,39 @@ export const UserEdit = (
                                 <label htmlFor="email">Email</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-envelope"></i></span>
-                                    <input id="email" name="email" type="text" defaultValue={user.email} />
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        type="text"
+                                        value={editUser.email}
+                                        onChange={(e) => setEditUser(state => ({ ...state, [e.target.name]: e.target.value }))}
+                                        onBlur={props.validateForm}
+                                    />
                                 </div>
-                                <p className="form-error">Email is not valid!</p>
+                                {props.formErrors.email &&
+                                    <p className="form-error">
+                                        {props.formErrors.email}
+                                    </p>
+                                }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="phoneNumber">Phone number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-phone"></i></span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" defaultValue={user.phoneNumber} />
+                                    <input
+                                        id="phoneNumber"
+                                        name="phoneNumber"
+                                        type="text"
+                                        value={editUser.phoneNumber}
+                                        onChange={(e) => setEditUser(state => ({ ...state, [e.target.name]: e.target.value }))}
+                                        onBlur={props.validateForm}
+                                    />
                                 </div>
-                                <p className="form-error">Phone number is not valid!</p>
+                                {props.formErrors.phoneNumber &&
+                                    <p className="form-error">
+                                        {props.formErrors.phoneNumber}
+                                    </p>
+                                }
                             </div>
                         </div>
 
@@ -69,9 +121,20 @@ export const UserEdit = (
                             <label htmlFor="imageUrl">Image Url</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-image"></i></span>
-                                <input id="imageUrl" name="imageUrl" type="text"  />
+                                <input
+                                    id="imageUrl"
+                                    name="imageUrl"
+                                    type="text"
+                                    value={editUser.imageUrl}
+                                    onChange={(e) => setEditUser(state => ({ ...state, [e.target.name]: e.target.value }))}
+                                    onBlur={props.validateForm}
+                                />
                             </div>
-                            <p className="form-error">ImageUrl is not valid!</p>
+                            {props.formErrors.imageUrl &&
+                                <p className="form-error">
+                                    {props.formErrors.imageUrl}
+                                </p>
+                            }
                         </div>
 
                         <div className="form-row">
@@ -79,21 +142,39 @@ export const UserEdit = (
                                 <label htmlFor="country">Country</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="country" name="country" type="text" defaultValue={user.country} />
+                                    <input
+                                        id="country"
+                                        name="country"
+                                        type="text"
+                                        value={editUser.country}
+                                        onChange={(e) => setEditUser(state => ({ ...state, [e.target.name]: e.target.value }))}
+                                        onBlur={props.validateForm}
+                                    />
                                 </div>
-                                <p className="form-error">
-                                    Country should be at least 2 characters long!
-                                </p>
+                                {props.formErrors.country &&
+                                    <p className="form-error">
+                                        {props.formErrors.country}
+                                    </p>
+                                }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="city">City</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-city"></i></span>
-                                    <input id="city" name="city" type="text" defaultValue='' />
+                                    <input
+                                        id="city"
+                                        name="city"
+                                        type="text"
+                                        value={editUser.city}
+                                        onChange={(e) => setEditUser(state => ({ ...state, [e.target.name]: e.target.value }))}
+                                        onBlur={props.validateForm}
+                                    />
                                 </div>
-                                <p className="form-error">
-                                    City should be at least 3 characters long!
-                                </p>
+                                {props.formErrors.city &&
+                                    <p className="form-error">
+                                        {props.formErrors.city}
+                                    </p>
+                                }
                             </div>
                         </div>
 
@@ -102,21 +183,39 @@ export const UserEdit = (
                                 <label htmlFor="street">Street</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="street" name="street" type="text" defaultValue='' />
+                                    <input
+                                        id="street"
+                                        name="street"
+                                        type="text"
+                                        value={editUser.street}
+                                        onChange={(e) => setEditUser(state => ({ ...state, [e.target.name]: e.target.value }))}
+                                        onBlur={props.validateForm}
+                                    />
                                 </div>
-                                <p className="form-error">
-                                    Street should be at least 3 characters long!
-                                </p>
+                                {props.formErrors.street &&
+                                    <p className="form-error">
+                                        {props.formErrors.street}
+                                    </p>
+                                }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="streetNumber">Street number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                                    <input id="streetNumber" name="streetNumber" type="text" defaultValue='' />
+                                    <input
+                                        id="streetNumber"
+                                        name="streetNumber"
+                                        type="text"
+                                        value={editUser.streetNumber}
+                                        onChange={(e) => setEditUser(state => ({ ...state, [e.target.name]: e.target.value }))}
+                                        onBlur={props.validateForm}
+                                    />
                                 </div>
-                                <p className="form-error">
-                                    Street number should be a positive number!
-                                </p>
+                                {props.formErrors.streetNumber &&
+                                    <p className="form-error">
+                                        {props.formErrors.streetNumber}
+                                    </p>
+                                }
                             </div>
                         </div>
                         <div id="form-actions">

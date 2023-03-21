@@ -1,5 +1,4 @@
 export const UserAdd = (props) => {
-    console.log(props)
     return (
         <div className="overlay">
             <div className="backdrop" onClick={() => props.onClose()}></div>

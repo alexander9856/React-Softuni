@@ -108,8 +108,8 @@ function App() {
 
 
     }
-    const formChangeHangler = (e) => {
-
+    const formChangeHandler = (e) => {
+       
         setFormValues(state => ({ ...state, [e.target.name]: e.target.value }))
     }
     const validateForm = (e) => {
@@ -158,9 +158,10 @@ function App() {
                         onDelete={onDelete}
                         onEdit={onEdit}
                         formValues={formValues}
-                        formChangeHandler={formChangeHangler}
+                        formChangeHandler={formChangeHandler}
                         formErrors={formErrors}
                         validateForm={validateForm}
+                        setFormValues={setFormValues}
                     />
                 </section>
             </main>
