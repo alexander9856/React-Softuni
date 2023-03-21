@@ -1,5 +1,6 @@
 export const UserEdit = (
     props
+    
 
 ) => {
     const user = props.user
@@ -26,7 +27,7 @@ export const UserEdit = (
                                 <label htmlFor="firstName"></label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" defaultValue={user.firstName} />
+                                    <input id="firstName" name="firstName" type="text" value={props.formValues.firstName} onChange={props.onChangeHandler} />
 
                                 </div>
                                 <p className="form-error">
@@ -37,7 +38,7 @@ export const UserEdit = (
                                 <label htmlFor="lastName"></label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="lastName" name="lastName" type="text" defaultValue={user.lastName} />
+                                    <input id="lastName" name="lastName" type="text" value={props.formValues.lastName} onChange={props.onChangeHandler}/>
                                 </div>
                                 <p className="form-error">
                                     Last name should be at least 3 characters long!
@@ -68,7 +69,7 @@ export const UserEdit = (
                             <label htmlFor="imageUrl">Image Url</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-image"></i></span>
-                                <input id="imageUrl" name="imageUrl" type="text" defaultValue={user.imageUrl} />
+                                <input id="imageUrl" name="imageUrl" type="text"  />
                             </div>
                             <p className="form-error">ImageUrl is not valid!</p>
                         </div>
@@ -78,7 +79,7 @@ export const UserEdit = (
                                 <label htmlFor="country">Country</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="country" name="country" type="text" defaultValue={user.address.country} />
+                                    <input id="country" name="country" type="text" defaultValue={user.country} />
                                 </div>
                                 <p className="form-error">
                                     Country should be at least 2 characters long!
@@ -88,7 +89,7 @@ export const UserEdit = (
                                 <label htmlFor="city">City</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-city"></i></span>
-                                    <input id="city" name="city" type="text" defaultValue={user.address.city} />
+                                    <input id="city" name="city" type="text" defaultValue='' />
                                 </div>
                                 <p className="form-error">
                                     City should be at least 3 characters long!
@@ -101,7 +102,7 @@ export const UserEdit = (
                                 <label htmlFor="street">Street</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="street" name="street" type="text" defaultValue={user.address.street} />
+                                    <input id="street" name="street" type="text" defaultValue='' />
                                 </div>
                                 <p className="form-error">
                                     Street should be at least 3 characters long!
@@ -111,7 +112,7 @@ export const UserEdit = (
                                 <label htmlFor="streetNumber">Street number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                                    <input id="streetNumber" name="streetNumber" type="text" defaultValue={user.address.streetNumber} />
+                                    <input id="streetNumber" name="streetNumber" type="text" defaultValue='' />
                                 </div>
                                 <p className="form-error">
                                     Street number should be a positive number!

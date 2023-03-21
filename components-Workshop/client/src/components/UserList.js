@@ -9,7 +9,11 @@ export const UserList = ({
     users,
     onCreate,
     onDelete,
-    onEdit
+    onEdit,
+    formValues,
+    formChangeHandler,
+    formErrors,
+    validateForm
 }) => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [selectedEditUser, setSelectedEditUser] = useState(null)
@@ -34,8 +38,8 @@ export const UserList = ({
 
         setSelectedEditUser(user);
     };
-    const onEditedClick = async(userId,ev) => {
-        await onEdit(userId,ev);
+    const onEditedClick = async (userId, ev) => {
+        await onEdit(userId, ev);
         setSelectedEditUser(null)
     }
     const onDeleteClick = async (userId) => {
@@ -58,9 +62,18 @@ export const UserList = ({
     return (
         <>
             {selectedUser && <UserInfo {...selectedUser} onClose={onClose} />}
-            {selectedEditUser && <UserEdit {...selectedEditUser} onClose={onClose} onEdit={onEditedClick} />}
+            {selectedEditUser && <UserEdit {...selectedEditUser} onClose={onClose} onEdit={onEditedClick} formValues={formValues} formChangeHandler={formChangeHandler} />}
             {selectedDeleteUser && <UserDelete userId={selectedDeleteUser} onClose={onClose} onDelete={onDeletedClick} />}
-            {selectedAdd && <UserAdd onClose={onClose} onCreate={onClickedAdd} />}
+            {selectedAdd
+                &&
+                <UserAdd
+                    onClose={onClose}
+                    onCreate={onClickedAdd}
+                    formValues={formValues}
+                    formChangeHandler={formChangeHandler}
+                    formErrors={formErrors}
+                    validateForm={validateForm}
+                />}
 
             <div className="table-wrapper">
                 {/* Loading spinner  
