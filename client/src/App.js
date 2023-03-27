@@ -161,7 +161,6 @@ function App() {
                         formChangeHandler={formChangeHandler}
                         formErrors={formErrors}
                         validateForm={validateForm}
-                        setFormValues={setFormValues}
                     />
                 </section>
             </main>
